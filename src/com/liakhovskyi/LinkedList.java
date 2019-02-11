@@ -7,9 +7,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        if (index < 0 || index >= size) {
-            throw new ArrayIndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        }
+        checkForIndexException(index);
         Node<T> elem = first;
         for (int i = 0; i < index; i++) {
             elem = elem.next;
@@ -34,11 +32,8 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void remove(int index) {
-        if (index < 0 || index > size())
-            throw new IndexOutOfBoundsException("Index out of bounds. Can't remove a node!");
-        if (size == 0) {
-            throw new NullPointerException("Empty list");
-        }
+        checkForIndexException(index);
+        isEmpty();
 
         Node<T> node = first;
         for (int i = 0; i < index; i++) {
@@ -78,6 +73,18 @@ public class LinkedList<T> implements List<T> {
         }
         stringBuilder.append("\b\b], size=" + size() + "}");
         return stringBuilder.toString();
+    }
+
+    private void checkForIndexException(int index) {
+        if (index >= size || index < 0) {
+            throw new ArrayIndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+    }
+
+    private void isEmpty() {
+        if (size == 0) {
+            throw new NullPointerException("Empty list");
+        }
     }
 
     private static class Node<T> {

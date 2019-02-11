@@ -17,9 +17,7 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        if (index >= elements.length && index < 0) {
-            throw new ArrayIndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        }
+        checkForIndexException(index);
         return (T) elements[index];
     }
 
@@ -32,18 +30,31 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void remove(int index) {
-        if (index >= 0 && index < size) {
-            for (int i = index; i < size; i++) {
-                elements[i] = elements[i + 1];
-            }
-            size--;
-            decreaseSize();
+        checkForIndexException(index);
+        isEmpty();
+
+        for (int i = index; i < size; i++) {
+            elements[i] = elements[i + 1];
         }
+        size--;
+        decreaseSize();
     }
 
     @Override
     public int size() {
         return size;
+    }
+
+    private void checkForIndexException(int index) {
+        if (index >= size || index < 0) {
+            throw new ArrayIndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+    }
+
+    private void isEmpty() {
+        if (size == 0) {
+            throw new NullPointerException("Empty list");
+        }
     }
 
     private void increaseSize() {
