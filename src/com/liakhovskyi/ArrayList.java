@@ -11,8 +11,8 @@ public class ArrayList<T> implements List<T> {
         elements = new Object[DEFAULT_CAPACITY];
     }
 
-    public ArrayList(int size) {
-        elements = new Object[size];
+    public ArrayList(int capacity) {
+        elements = new Object[capacity];
     }
 
     @Override
