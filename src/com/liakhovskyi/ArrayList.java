@@ -25,9 +25,7 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void add(T t) {
-        if (size == elements.length) {
-            increaseSize();
-        }
+        increaseSize();
         elements[size] = t;
         size++;
     }
@@ -39,9 +37,7 @@ public class ArrayList<T> implements List<T> {
                 elements[i] = elements[i + 1];
             }
             size--;
-            if (elements.length > DEFAULT_CAPACITY && size == elements.length / 4) {
-                decreaseSize();
-            }
+            decreaseSize();
         }
     }
 
@@ -51,11 +47,15 @@ public class ArrayList<T> implements List<T> {
     }
 
     private void increaseSize() {
-        elements = Arrays.copyOf(elements, elements.length * 2);
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, elements.length * 2);
+        }
     }
 
     private void decreaseSize() {
-        elements = Arrays.copyOf(elements, elements.length / 2);
+        if (elements.length > DEFAULT_CAPACITY && size == elements.length / 4) {
+            elements = Arrays.copyOf(elements, elements.length / 2);
+        }
     }
 
     @Override
