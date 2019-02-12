@@ -31,7 +31,7 @@ public class ArrayList<T> implements List<T> {
     @Override
     public void remove(int index) {
         checkForIndexException(index);
-        isEmpty();
+        checkForEmptyListException();
 
         for (int i = index; i < size; i++) {
             elements[i] = elements[i + 1];
@@ -51,9 +51,17 @@ public class ArrayList<T> implements List<T> {
         }
     }
 
-    private void isEmpty() {
-        if (size == 0) {
+    private void checkForEmptyListException() {
+        if (isEmpty()) {
             throw new NullPointerException("Empty list");
+        }
+    }
+
+    private boolean isEmpty() {
+        if (size == 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
