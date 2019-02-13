@@ -33,7 +33,6 @@ public class LinkedList<T> implements List<T> {
     @Override
     public void remove(int index) {
         checkForIndexException(index);
-        checkForEmptyListException();
 
         Node<T> node = first;
         for (int i = 0; i < index; i++) {
@@ -81,13 +80,7 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
-    private void checkForEmptyListException() {
-        if (isEmpty()) {
-            throw new NullPointerException("Empty list");
-        }
-    }
-
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         if (size == 0) {
             return true;
         } else {
