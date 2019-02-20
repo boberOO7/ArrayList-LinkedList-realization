@@ -5,14 +5,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnit4.class)
 public class ListTest {
 
     private List<Integer> integerArrayList = new ArrayList<>();
     private List<Integer> integerLinkedList = new LinkedList<>();
-
 
     @Before
     public void init() {
@@ -30,33 +29,45 @@ public class ListTest {
     }
 
     @Test
-    public void testListReturnProperElementFromIndex() {
+    public void testListReturnProperElementFromIndexForArrayList() {
         int expectedResult1 = 30;
         int actualResult1 = integerArrayList.get(2);
         assertEquals(expectedResult1, actualResult1);
+    }
 
+    @Test
+    public void testListReturnProperElementFromIndexForLinkedList() {
         int expectedResult2 = 40;
         int actualResult2 = integerLinkedList.get(3);
         assertEquals(expectedResult2, actualResult2);
     }
 
     @Test
-    public void testListReturnProperSizeAfterAddingNewElement() {
+    public void testListReturnProperSizeForArrayList() {
         int expectedSize1 = 5;
         int actualSize1 = integerArrayList.size();
         assertEquals(expectedSize1, actualSize1);
+    }
 
+    @Test
+    public void testListReturnProperSizeForLinkedList() {
+        int expectedSize1 = 5;
+        int actualSize1 = integerLinkedList.size();
+        assertEquals(expectedSize1, actualSize1);
+    }
+
+    @Test
+    public void testListReturnProperSizeAfterAddingNewElementForArrayList() {
         integerArrayList.add(60);
         integerArrayList.add(70);
 
         int expectedSizeAfter1 = 7;
         int actualSizeAfter1 = integerArrayList.size();
         assertEquals(expectedSizeAfter1, actualSizeAfter1);
+    }
 
-        int expectedSize2 = 5;
-        int actualSize2 = integerLinkedList.size();
-        assertEquals(expectedSize2, actualSize2);
-
+    @Test
+    public void testListReturnProperSizeAfterAddingNewElementForLinkedList() {
         integerLinkedList.add(60);
         integerLinkedList.add(70);
 
@@ -66,21 +77,16 @@ public class ListTest {
     }
 
     @Test
-    public void testListReturnProperSizeAfterRemoveElement() {
-        int expectedSize1 = 5;
-        int actualSize1 = integerArrayList.size();
-        assertEquals(expectedSize1, actualSize1);
-
+    public void testListReturnProperSizeAfterRemoveElementForArrayList() {
         integerArrayList.remove(0);
 
         int expectedSizeAfter1 = 4;
         int actualSizeAfter1 = integerArrayList.size();
         assertEquals(expectedSizeAfter1, actualSizeAfter1);
+    }
 
-        int expectedSize2 = 5;
-        int actualSize2 = integerLinkedList.size();
-        assertEquals(expectedSize2, actualSize2);
-
+    @Test
+    public void testListReturnProperSizeAfterRemoveElementForLinkedList() {
         integerLinkedList.remove(0);
 
         int expectedSizeAfter2 = 4;
